@@ -5,6 +5,8 @@ import { revalidatePath } from 'next/cache';
 
 export const metadata = { title: '新規プロジェクト作成' };
 
+export const dynamic = 'force-dynamic'
+
 export default function NewProjectPage() {
   // -------- Server Action --------
   async function createProject(formData: FormData) {

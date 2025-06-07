@@ -25,7 +25,7 @@ model Project {
 
 model Thread {
   id        String   @id @default(uuid())
-  title     String
+  title     String?
   project   Project  @relation(fields:[projectId], references:[id])
   projectId String
   messages  Message[]

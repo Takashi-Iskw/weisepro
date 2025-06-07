@@ -12,15 +12,18 @@ services:
       # - db-data:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d
     ports:
-      - "5432:5432"        # ホスト → コンテナ転送（ローカル開発用）
+      - "15432:5432"        # ホスト → コンテナ転送（ローカル開発用）
 
   web:
-    build: .
+    build: 
+      context: .
+      args:
+        - DATABASE_URL=postgresql://nextuser:nextpass@db:5432/nextapp
     restart: unless-stopped
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://nextuser:nextpass@db:5432/nextapp
+      DATABASE_URL: ${DATABASE_URL}
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       NODE_ENV: production
     ports:

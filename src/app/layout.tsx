@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { ReactNode } from 'react';
+import Sidebar from '@/components/Sidebar';
+
+export const dynamic = 'force-dynamic';
 
 const inter = Inter({
   subsets: ['latin'],      // ← そのまま
@@ -25,8 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
-        {children}
+      <body className="flex bg-[#23262B] text-zinc-100">
+        {/* 左に常駐させる */}
+        <Sidebar />
+        <main className="flex-1 h-screen overflow-y-auto">{children}</main>
       </body>
     </html>
   );

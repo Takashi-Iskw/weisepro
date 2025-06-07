@@ -3,6 +3,10 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
+
 # 1️⃣  devDependencies を含めてインストール
 COPY package.json package-lock.json* ./
 RUN npm ci   # ← --omit=dev を外す
