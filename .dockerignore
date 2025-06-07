@@ -1,0 +1,10 @@
+.git
+node_modules
+.next
+.vscode
+
+.DS_Store
+*.log
+.eslintcache
+
+.env*
