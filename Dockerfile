@@ -9,10 +9,15 @@ RUN npm ci   # ← --omit=dev を外す
 
 # 2️⃣  アプリコードをコピーしてビルド
 COPY . .
+
+# 依存インストール後
+RUN npx prisma generate
+
 RUN npm run build
 
 # 3️⃣  ビルド完了後に devDependencies を削る
 RUN npm prune --omit=dev
+
 
 ################ runtime stage 🚀 ##############
 FROM node:22-alpine AS runner
