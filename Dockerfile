@@ -30,11 +30,21 @@ WORKDIR /app
 ENV NODE_ENV=production \
     PORT=3000
 
-# 4️⃣  ビルド成果物 & 本番用 node_modules をコピー
-COPY --from=builder /app/.next ./.next
+# 1️⃣ Prisma 関連ファイルをコピー
+COPY --from=builder /app/prisma ./prisma
+
+# 2️⃣ prisma CLI だけ prod にインストール
+#    （--omit=optional で engine に不要な optional deps を切る）
+RUN npm install --no-save prisma@^6 --omit=optional
+
+# 3️⃣ アプリ本体をコピー
+# COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static 
 
-EXPOSE 3000
-CMD ["npm","start"]
+# 4️⃣ 起動時に migrate → アプリを立ち上げる
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
+

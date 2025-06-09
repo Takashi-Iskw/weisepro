@@ -7,6 +7,7 @@ import /** @type {import('next').NextConfig} */('next')
 // }
 
 const nextConfig = {
+  output: 'standalone',
   reactStrictMode: true,
 
   webpack: (config) => {
