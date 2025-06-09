@@ -32,13 +32,21 @@ export default async function ProjectsPage({
       <h1 className="text-3xl font-bold">Projects</h1>
 
       {/* 一覧カード */}
+
+
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
-          <li key={p.id} className="border rounded-xl p-4 shadow-sm">
-            <Link href={`/projects/${p.id}`} className="block hover:opacity-80 h-full">
-              <h2 className="font-semibold text-lg mb-2 truncate">{p.name}</h2>
+          <li key={p.id}>
+            {/* "group" を付けてテキストカラーを制御 */}
+            <Link
+              href={`/projects/${p.id}`}
+              className="project-card group block h-full hover:no-underline"  // ← 追加
+            >
+              <h2 className="font-semibold text-lg mb-2 truncate group-hover:text-black">
+                {p.name}
+              </h2>
               {p.prompt && (
-                <p className="text-sm text-zinc-100 line-clamp-3 whitespace-pre-wrap">
+                <p className="text-sm line-clamp-3 whitespace-pre-wrap group-hover:text-black">
                   {p.prompt}
                 </p>
               )}

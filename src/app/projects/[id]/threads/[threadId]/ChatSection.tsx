@@ -32,7 +32,7 @@ export default function ChatSection({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto space-y-4 p-4">
+      <div className="flex-1 overflow-y-auto space-y-4 p-4 text-black">
         {messages.map((m) => (
           <MessageCard key={m.id} role={m.role} content={m.content} />
         ))}
@@ -44,12 +44,12 @@ export default function ChatSection({
           value={input}
           onChange={handleInputChange}
           placeholder="メッセージを入力..."
-          className="flex-1 rounded border px-3 py-2"
+          className="flex-1 rounded border px-3 py-2 text-black"
         />
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
-          className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+          className="bg-blue-600 text-black px-4 py-2 rounded disabled:opacity-50"
         >
           送信
         </button>

@@ -64,7 +64,7 @@ export default async function ThreadPage({
     <div className="flex flex-col h-[calc(100vh-4rem)]">
       {/* ==== タイトル表示エリア ==== */}
       <header className="p-4 border-b bg-zinc-50">
-        <h2 className="text-xl font-bold">{thread.title || 'Untitled'}</h2>
+        <h2 className="text-xl font-bold text-black">{thread.title || 'Untitled'}</h2>
       </header>
 
       {/* ==== チャット本体 ==== */}

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import { ReactNode } from 'react';
 import Sidebar from '@/components/Sidebar';
+import '../styles/project-card.css';
 
 export const dynamic = 'force-dynamic';
 

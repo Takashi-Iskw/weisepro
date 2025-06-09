@@ -1,20 +1,3 @@
-// // app/projects/[projectId]/page.tsx
-// import { prisma } from '@/lib/prisma';
-// import { notFound } from 'next/navigation';
-
-// export default async function ProjectTop({ params }: { params: { id: string } }) {
-//   const project = await prisma.project.findUnique({ where: { id: params.id } });
-//   if (!project) notFound();
-
-//   return (
-//     <div className="p-8">
-//       <h1 className="text-3xl font-bold mb-4">{project.name}</h1>
-//       {project.prompt && <p className="whitespace-pre-wrap">{project.prompt}</p>}
-//       <p className="text-zinc-500 mt-8">← 左の「+ New Thread」でスレッドを作成して下さい</p>
-//     </div>
-//   );
-// }
-
 // app/projects/[projectId]/page.tsx
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
