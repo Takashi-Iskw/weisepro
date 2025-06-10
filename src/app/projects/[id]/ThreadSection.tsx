@@ -63,8 +63,14 @@
 // app/projects/[projectId]/ThreadSection.tsx
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
+import dynamic from 'next/dynamic';
 
 type Props = { projectId: string };
+
+const NewThreadButton = dynamic(
+  () => import('./NewThreadButton'),
+  { ssr: false },
+);
 
 export default async function ThreadSection({ projectId }: Props) {
   const threads = await prisma.thread.findMany({
@@ -74,12 +80,20 @@ export default async function ThreadSection({ projectId }: Props) {
   });
 
   if (threads.length === 0) {
-    return <p className="text-zinc-400">まだスレッドがありません。</p>;
+    return (
+    <p className="text-zinc-400">
+      まだスレッドがありません。&nbsp;
+      <NewThreadButton projectId={projectId} />
+    </p>
+  );
   }
 
   return (
-    <section className="space-y-4">
-      <h2 className="text-2xl font-semibold">Threads</h2>
+        <section className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold">Threads</h2>
+          <NewThreadButton projectId={projectId} />
+        </div>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {threads.map((t) => (
